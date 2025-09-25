@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baby Food RAG Assistant</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🍼 Baby Food Assistant</h1>
+            <p>Ask questions about baby foods and get evidence-based recommendations</p>
+        </header>
+
+        <div class="search-section">
+            <div class="input-group">
+                <input type="text" id="questionInput" placeholder="e.g., Which foods are high in iron for my baby?" />
+                <button id="askButton">Ask</button>
+            </div>
+        </div>
+
+        <div id="loadingSpinner" class="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Searching for answers...</p>
+        </div>
+
+        <div id="results" class="results-section" style="display: none;">
+            <div class="answer-card">
+                <div class="confidence-badge" id="confidenceBadge"></div>
+                <div class="answer" id="answer"></div>
+            </div>
+
+            <div class="citations-section">
+                <h3>📚 Sources & Citations</h3>
+                <div id="citations"></div>
+            </div>
+
+            <div class="foods-section">
+                <h3>🥕 Related Foods</h3>
+                <div id="foods"></div>
+            </div>
+        </div>
+
+        <div class="examples">
+            <h3>💡 Try asking:</h3>
+            <div class="example-questions">
+                <button class="example-btn" onclick="askExample('Which foods are high in iron?')">Which foods are high in iron?</button>
+                <button class="example-btn" onclick="askExample('What foods help with immunity?')">What foods help with immunity?</button>
+                <button class="example-btn" onclick="askExample('Best first foods for babies')">Best first foods for babies</button>
+                <button class="example-btn" onclick="askExample('High protein baby foods')">High protein baby foods</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const questionInput = document.getElementById('questionInput');
+        const askButton = document.getElementById('askButton');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        const results = document.getElementById('results');
+
+        askButton.addEventListener('click', askQuestion);
+        questionInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') askQuestion();
+        });
+
+        async function askQuestion() {
+            const question = questionInput.value.trim();
+            if (!question) return;
+
+            // Show loading, hide results
+            loadingSpinner.style.display = 'block';
+            results.style.display = 'none';
+
+            try {
+                const response = await fetch('/api/ask', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ question, top_k: 3 })
+                });
+
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                
+                const data = await response.json();
+                displayResults(data);
+                
+            } catch (error) {
+                console.error('Error:', error);
+                displayError('Sorry, something went wrong. Please try again.');
+            } finally {
+                loadingSpinner.style.display = 'none';
+            }
+        }
+
+        function displayResults(data) {
+            // Display answer
+            document.getElementById('answer').innerHTML = data.answer;
+            
+            // Display confidence
+            const confidenceBadge = document.getElementById('confidenceBadge');
+            confidenceBadge.textContent = `${data.confidence} Confidence`;
+            confidenceBadge.className = `confidence-badge confidence-${data.confidence.toLowerCase()}`;
+
+            // Display citations
+            const citationsHtml = data.citations.map(citation => `
+                <div class="citation">
+                    <a href="${citation.usda_url}" target="_blank" rel="noopener">
+                        📊 ${citation.food_name}
+                    </a>
+                    <span class="relevance-score">Relevance: ${(citation.relevance_score * 100).toFixed(1)}%</span>
+                </div>
+            `).join('');
+            document.getElementById('citations').innerHTML = citationsHtml;
+
+            // Display foods
+            const foodsHtml = data.retrieved_foods.map(food => `
+                <div class="food-card">
+                    <div class="food-header">
+                        <h4>${food.name}</h4>
+                        <span class="category">${food.category}</span>
+                    </div>
+                    <div class="nutrition">
+                        <span>🔥 ${food.kcal_100g} kcal</span>
+                        <span>🥩 ${food.protein_g}g protein</span>
+                        <span>⚡ ${food.iron_mg}mg iron</span>
+                        <span>🥕 ${food.vit_a_ug}µg Vit A</span>
+                        <span>🍊 ${food.vit_c_mg}mg Vit C</span>
+                    </div>
+                    <p class="note">${food.note}</p>
+                </div>
+            `).join('');
+            document.getElementById('foods').innerHTML = foodsHtml;
+
+            results.style.display = 'block';
+        }
+
+        function displayError(message) {
+            results.innerHTML = `<div class="error">${message}</div>`;
+            results.style.display = 'block';
+        }
+
+        function askExample(question) {
+            questionInput.value = question;
+            askQuestion();
+        }
+    </script>
+</body>
+</html>
