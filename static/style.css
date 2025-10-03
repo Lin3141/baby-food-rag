@@ -115,22 +115,49 @@ header p {
     position: absolute;
     top: 20px;
     right: 20px;
-    padding: 5px 12px;
+    padding: 8px 16px;
     border-radius: 20px;
     font-size: 0.85rem;
     font-weight: 600;
-    text-transform: uppercase;
+    max-width: 200px;
+    text-align: center;
 }
 
-.confidence-high { background: #d4edda; color: #155724; }
-.confidence-medium { background: #fff3cd; color: #856404; }
-.confidence-low { background: #f8d7da; color: #721c24; }
+.confidence-high { 
+    background: #d4edda; 
+    color: #155724; 
+    border: 1px solid #c3e6cb;
+}
+
+.confidence-medium { 
+    background: #fff3cd; 
+    color: #856404; 
+    border: 1px solid #ffeaa7;
+}
+
+.confidence-low { 
+    background: #f8d7da; 
+    color: #721c24; 
+    border: 1px solid #f5c6cb;
+}
 
 .answer {
     font-size: 1.1rem;
-    line-height: 1.6;
+    line-height: 1.8;
     margin-top: 10px;
     padding-right: 120px;
+    white-space: pre-line;
+}
+
+/* Make bold text more prominent */
+.answer strong {
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+/* Style for emoji icons */
+.answer {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
 }
 
 .citations-section, .foods-section {
@@ -253,6 +280,55 @@ header p {
     color: #721c24;
     border-radius: 10px;
     text-align: center;
+}
+
+.benefits {
+    margin: 10px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.benefit-tag {
+    background: #e8f5e8;
+    color: #2d5a3d;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    border: 1px solid #c3e6cb;
+}
+
+.nutrition-toggle {
+    margin: 10px 0;
+}
+
+.expand-nutrition {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.expand-nutrition:hover {
+    background: #e9ecef;
+}
+
+.nutrition-details {
+    margin-top: 8px;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    border: 1px solid #dee2e6;
+}
+
+.nutrition-details span {
+    display: inline-block;
+    margin: 2px 8px 2px 0;
+    font-size: 0.85rem;
+    color: #6c757d;
 }
 
 @media (max-width: 768px) {

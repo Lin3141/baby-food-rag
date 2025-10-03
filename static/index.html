@@ -31,11 +31,6 @@
                 <div class="answer" id="answer"></div>
             </div>
 
-            <div class="citations-section">
-                <h3>📚 Sources & Citations</h3>
-                <div id="citations"></div>
-            </div>
-
             <div class="foods-section">
                 <h3>🥕 Related Foods</h3>
                 <div id="foods"></div>
@@ -93,38 +88,45 @@
         }
 
         function displayResults(data) {
-            // Display answer
-            document.getElementById('answer').innerHTML = data.answer;
+            // Display answer with proper line breaks
+            const answerElement = document.getElementById('answer');
+            const formattedAnswer = data.answer.replace(/\n/g, '<br>');
+            answerElement.innerHTML = formattedAnswer;
             
-            // Display confidence
+            // Display parent-friendly confidence
             const confidenceBadge = document.getElementById('confidenceBadge');
-            confidenceBadge.textContent = `${data.confidence} Confidence`;
-            confidenceBadge.className = `confidence-badge confidence-${data.confidence.toLowerCase()}`;
+            confidenceBadge.textContent = data.confidence;  // Already parent-friendly
+            
+            // Style based on confidence type
+            if (data.confidence.includes('medical guidelines')) {
+                confidenceBadge.className = 'confidence-badge confidence-high';
+            } else if (data.confidence.includes('consult pediatrician')) {
+                confidenceBadge.className = 'confidence-badge confidence-low';
+            } else {
+                confidenceBadge.className = 'confidence-badge confidence-medium';
+            }
 
-            // Display citations
-            const citationsHtml = data.citations.map(citation => `
-                <div class="citation">
-                    <a href="${citation.usda_url}" target="_blank" rel="noopener">
-                        📊 ${citation.food_name}
-                    </a>
-                    <span class="relevance-score">Relevance: ${(citation.relevance_score * 100).toFixed(1)}%</span>
-                </div>
-            `).join('');
-            document.getElementById('citations').innerHTML = citationsHtml;
-
-            // Display foods
+            // Display foods with parent-friendly benefits
             const foodsHtml = data.retrieved_foods.map(food => `
                 <div class="food-card">
                     <div class="food-header">
                         <h4>${food.name}</h4>
                         <span class="category">${food.category}</span>
                     </div>
-                    <div class="nutrition">
-                        <span>🔥 ${food.kcal_100g} kcal</span>
-                        <span>🥩 ${food.protein_g}g protein</span>
-                        <span>⚡ ${food.iron_mg}mg iron</span>
-                        <span>🥕 ${food.vit_a_ug}µg Vit A</span>
-                        <span>🍊 ${food.vit_c_mg}mg Vit C</span>
+                    <div class="benefits">
+                        ${getParentFriendlyBenefits(food)}
+                    </div>
+                    <div class="nutrition-toggle">
+                        <button class="expand-nutrition" onclick="toggleNutrition(this)">
+                            📊 View nutrition details
+                        </button>
+                        <div class="nutrition-details" style="display: none;">
+                            <span>🔥 ${food.kcal_100g} kcal</span>
+                            <span>🥩 ${food.protein_g}g protein</span>
+                            <span>⚡ ${food.iron_mg}mg iron</span>
+                            <span>🥕 ${food.vit_a_ug}µg Vit A</span>
+                            <span>🍊 ${food.vit_c_mg}mg Vit C</span>
+                        </div>
                     </div>
                     <p class="note">${food.note}</p>
                 </div>
@@ -132,6 +134,57 @@
             document.getElementById('foods').innerHTML = foodsHtml;
 
             results.style.display = 'block';
+        }
+
+        function getParentFriendlyBenefits(food) {
+            const benefits = [];
+            
+            // Convert technical numbers to parent benefits
+            if (food.iron_mg > 2) {
+                benefits.push('💪 Supports healthy blood development');
+            }
+            if (food.vit_c_mg > 20) {
+                benefits.push('🛡️ Boosts immune system naturally');
+            }
+            if (food.protein_g > 10) {
+                benefits.push('🏗️ Supports muscle growth');
+            }
+            if (food.fiber_g > 3) {
+                benefits.push('🌿 Helps with healthy digestion');
+            }
+            if (food.vit_a_ug > 100) {
+                benefits.push('👁️ Supports healthy vision');
+            }
+            
+            // Specific food benefits
+            const foodName = food.name.toLowerCase();
+            if (foodName.includes('banana')) {
+                benefits.push('💪 Good source of potassium for muscle growth');
+            } else if (foodName.includes('avocado')) {
+                benefits.push('🧠 Healthy fats for brain development');
+            } else if (foodName.includes('yogurt')) {
+                benefits.push('🦠 Probiotics for gut health');
+            } else if (foodName.includes('salmon')) {
+                benefits.push('🧠 Omega-3s for brain development');
+            }
+            
+            // Show top 2 benefits to avoid clutter
+            return benefits.slice(0, 2).map(benefit => 
+                `<span class="benefit-tag">${benefit}</span>`
+            ).join('');
+        }
+
+        function toggleNutrition(button) {
+            const details = button.nextElementSibling;
+            const isHidden = details.style.display === 'none';
+            
+            if (isHidden) {
+                details.style.display = 'block';
+                button.textContent = '📊 Hide nutrition details';
+            } else {
+                details.style.display = 'none';
+                button.textContent = '📊 View nutrition details';
+            }
         }
 
         function displayError(message) {

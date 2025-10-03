@@ -1,0 +1,51 @@
+food_name,group,min_month_safe,prep,risks,allergens,nutrient_highlights,notes,source_primary,source_secondary
+Apple,Fruit,6,Steam & puree; later soft slices,Choking (chunks/skins),,"fiber, vitamin C",Start as smooth puree; peel for early months.,AAP/CDC infant solids,WHO infant feeding
+Banana,Fruit,6,Mash or serve soft strips,Choking (large chunks),,"potassium, fiber",Easy first food; mash thoroughly.,AAP/CDC infant solids,WHO infant feeding
+Pear,Fruit,6,Steam & puree or very soft pieces,Choking (firm pieces),,"fiber, vitamin C",Peeled for early months.,AAP/CDC infant solids,WHO infant feeding
+Peach,Fruit,6,Steam & puree or soft diced,Choking (skins),,"vitamin C, fiber",Remove skin if firm.,AAP/CDC infant solids,WHO infant feeding
+Plum,Fruit,6,Puree or very soft pieces,Choking (pits/skins),,fiber,Remove pit; peel if needed.,AAP/CDC infant solids,WHO infant feeding
+Avocado,Fruit,6,Mash or soft strips,Choking (large blobs),,"healthy fats, fiber",Good fat source for energy.,AAP/CDC infant solids,WHO infant feeding
+Blueberry,Fruit,6,Mash or quarter/flatten for <12m,Choking (whole berries),,"antioxidants, fiber",Crush for younger babies.,AAP/CDC infant solids,WHO infant feeding
+Strawberry,Fruit,6,Mash or small soft pieces,Allergy potential; choking (large pieces),strawberry,"vitamin C, antioxidants","Introduce when developmentally ready, watch for reactions.",AAP/CDC infant solids,WHO infant feeding
+Mango,Fruit,6,Puree or very soft strips,Choking (firm slices),,"vitamin A, vitamin C","Ripe, soft mango only.",AAP/CDC infant solids,WHO infant feeding
+Watermelon,Fruit,6,"Seedless, soft strips; avoid rinds",Choking (seeds/chunks),,"hydration, vitamin C",Remove seeds; offer in thin strips.,AAP/CDC infant solids,WHO infant feeding
+Carrot,Vegetable,6,Steam until very soft; puree or mash,Choking (raw/firm coins),,beta-carotene,"Offer soft, not raw coins.",AAP/CDC infant solids,WHO infant feeding
+Sweet potato,Vegetable,6,Steam/roast very soft; mash/puree,Choking (firm chunks),,"beta-carotene, fiber",Common first food.,AAP/CDC infant solids,WHO infant feeding
+Pumpkin,Vegetable,6,Steam/roast soft; mash/puree,Choking (firm pieces),,beta-carotene,Smooth texture ideal early.,AAP/CDC infant solids,WHO infant feeding
+Peas,Vegetable,6,Steam soft; mash or flatten,Choking (whole peas for young),,"fiber, protein",Crush for younger infants.,AAP/CDC infant solids,WHO infant feeding
+Green beans,Vegetable,6,Steam very soft; cut small; mash,Choking (stringy pods),,fiber,Remove tough strings.,AAP/CDC infant solids,WHO infant feeding
+Broccoli,Vegetable,6,Steam until very soft; florets mashed,Choking (firm stalks),,"vitamin C, fiber",Offer soft florets or puree.,AAP/CDC infant solids,WHO infant feeding
+Cauliflower,Vegetable,6,Steam very soft; mash,Choking (firm florets),,fiber,Serve soft only.,AAP/CDC infant solids,WHO infant feeding
+Spinach,Vegetable,6,Steam; puree finely,Nitrates (limit portions early),,"iron (non-heme), folate",Rotate with other greens; small portions.,AAP/CDC infant solids,WHO infant feeding
+Zucchini,Vegetable,6,Steam very soft; mash,Choking (firm pieces),,"hydration, fiber",Remove skin if tough.,AAP/CDC infant solids,WHO infant feeding
+Chicken,Protein,6,Cook thoroughly; shred finely or puree,Choking (dry chunks); undercooked risk,,"protein, iron",Moisten with broth for texture.,AAP/CDC infant solids,WHO infant feeding
+Turkey,Protein,6,Cook thoroughly; shred/puree,Choking (dry chunks),,"protein, iron",Serve moist textures.,AAP/CDC infant solids,WHO infant feeding
+Beef,Protein,6,Cook thoroughly; mince/puree,Choking (tough chunks),,"heme iron, protein",Iron-rich early food.,AAP/CDC infant solids,WHO infant feeding
+Pork,Protein,6,Cook thoroughly; mince/puree,Choking (tough chunks); undercooked risk,,protein,Ensure soft texture.,AAP/CDC infant solids,WHO infant feeding
+Salmon,Protein,6,Cook thoroughly; flake & debone,Bones; allergy potential; mercury (generally low in salmon),fish,"protein, omega-3",Check carefully for bones.,AAP/CDC infant solids,WHO infant feeding
+Cod,Protein,6,Cook thoroughly; flake & debone,Bones; allergy potential,fish,protein,Mild white fish option.,AAP/CDC infant solids,WHO infant feeding
+"Tuna (canned, light)",Protein,6,Mix with puree/yogurt; ensure soft,Mercury (limit frequency); allergy,fish,"protein, omega-3 (varies)",Prefer light tuna; limit servings.,AAP/CDC infant solids,WHO infant feeding
+Shrimp,Protein,6,Cook thoroughly; chop finely,Allergy; choking (rubbery pieces),shellfish,protein,Introduce when ready; watch for reactions.,AAP/CDC infant solids,WHO infant feeding
+Egg (well-cooked),Protein,6,Scramble well-cooked; mash for texture,Allergy potential (egg); undercooked risk,egg,"protein, choline",Current guidance supports early introduction.,AAP/CDC infant solids,WHO infant feeding
+Tofu,Protein,6,Soft cubes; mash as needed,Choking (firm cubes),soy,"protein, calcium (if set with calcium)",Choose soft/silken for younger infants.,AAP/CDC infant solids,WHO infant feeding
+Lentils,Legume,6,Cook very soft; mash,Gas; choking (firm skins),,"protein, iron, fiber",Rinse well; cook until very soft.,AAP/CDC infant solids,WHO infant feeding
+Black beans,Legume,6,Cook very soft; mash or flatten,Choking (whole beans for young),,"protein, fiber, iron",Mash for early months.,AAP/CDC infant solids,WHO infant feeding
+"Yogurt (whole milk, pasteurized)",Dairy,6,Serve plain; thin if needed,Allergy (milk protein); added sugar risk,milk,"calcium, protein",Okay as food ≥6m; avoid added sugars.,AAP/CDC infant solids,WHO infant feeding
+Cheese (pasteurized),Dairy,6,Shred very fine or melt into puree,Choking (chunks); sodium,milk,"calcium, protein",Choose low-sodium options.,AAP/CDC infant solids,WHO infant feeding
+Cottage cheese,Dairy,6,Small curds; mix with puree,Sodium; allergy (milk),milk,"protein, calcium",Rinse if very salty; choose low-sodium brands.,AAP/CDC infant solids,WHO infant feeding
+Oatmeal (infant cereal),Grain,6,Thin with breastmilk/formula; then thicken,Choking (thick clumps),,"iron (fortified), fiber",Rotate grains; iron-fortified cereals support iron needs.,AAP/CDC infant solids,WHO infant feeding
+Rice cereal,Grain,6,Thin with breastmilk/formula,Arsenic (vary grains),,iron (fortified),Vary grains due to arsenic concerns.,AAP/CDC infant solids,WHO infant feeding
+Quinoa,Grain,6,Cook very soft; mash,Choking (dry grains),,"protein, fiber",Rinse well; mix into purees.,AAP/CDC infant solids,WHO infant feeding
+Pasta (soft),Grain,6,Cook very soft; cut small,Choking (firm shapes),wheat (if wheat-based),carbs,Choose small shapes; overcook for softness.,AAP/CDC infant solids,WHO infant feeding
+Bread (soft),Grain,6,Small soft pieces; avoid hard crusts,Choking (gummy wads); added sugar/salt,wheat (if wheat-based),"carbs, fiber (whole grain)",Offer small pieces; avoid honey in bread <12m.,AAP/CDC infant solids,WHO infant feeding
+Honey,Special,12,None for <12m,Infant botulism,,,Avoid entirely before 12 months.,AAP/CDC guidance on honey,HealthyChildren.org
+Whole grapes,Special,12,<12m: quarter/mashed only; avoid whole,Choking (whole/halves),,hydration,Strict prep for <12m; whole grapes later.,AAP choking hazards,HealthyChildren.org
+Whole nuts,Special,48,Avoid whole nuts <4y; use thin nut butter from 6m,Choking,peanut/tree nut,"healthy fats, protein",Nut butter thinned is okay ≥6m; monitor for allergy.,AAP choking hazards,HealthyChildren.org
+Peanut butter (thinned),Protein,6,Thin with water/yogurt; smear thinly,Allergy; choking (thick blob),peanut,"healthy fats, protein",Early introduction may reduce allergy risk; supervise.,AAP allergy guidance,CDC infant feeding
+Cow’s milk (as drink),Special,12,Not a primary drink <12m; small amounts in foods ok ≥6m,Anemia risk if used as drink <12m; allergy,milk,"calcium, protein",Yogurt/cheese okay ≥6m; avoid as main drink <12m.,AAP/CDC dairy guidance,HealthyChildren.org
+"Egg (yolk/whole, well-cooked)",Protein,6,Scramble well-cooked; mash for texture,Allergy potential (egg),egg,"protein, choline, iron (yolk)",No need to delay allergens; supervise first exposures.,AAP allergy guidance,CDC infant feeding
+Strained peanut (powder),Protein,6,Mix small amount into puree/yogurt,Allergy potential,peanut,"protein, fats",Introduce in very small amounts initially.,AAP allergy guidance,CDC infant feeding
+"Shellfish (e.g., crab)",Protein,6,Cook thoroughly; chop finely,Allergy potential,shellfish,"protein, minerals",Watch for reactions; texture matters.,AAP allergy guidance,CDC infant feeding
+Leafy greens (mixed),Vegetable,6,Cook well; puree finely,Nitrates (limit portions early),,"iron (non-heme), folate",Rotate greens to spread exposure.,AAP/CDC infant solids,WHO infant feeding
+Berries (mixed),Fruit,6,Mash/crush for <12m,Choking (whole); allergy potential,varies,"vitamin C, antioxidants",Introduce one at a time.,AAP/CDC infant solids,WHO infant feeding
+Rice (cooked),Grain,6,Cook very soft; mash; vary grains,Choking (dry clumps); arsenic,,carbs,"Rotate with oats, barley, quinoa.",AAP/CDC infant solids,WHO infant feeding

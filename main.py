@@ -27,8 +27,8 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 # Initialize data and retriever
 def initialize_retriever():
     try:
-        # Load data
-        data_loader = DataLoader("data/foods.csv")
+        # Load data - UPDATE TO USE NEW DATABASE
+        data_loader = DataLoader("data/baby_food_kg.csv")  # Changed from foods.csv
         foods = data_loader.load_data()
         descriptions = data_loader.get_food_descriptions()
         
@@ -63,6 +63,23 @@ async def read_index():
 async def health_check():
     return {"status": "healthy", "message": "Baby Food RAG API is running"}
 
+# Add this endpoint for development
+@app.post("/admin/reload-data")
+async def reload_data():
+    """Development endpoint to reload data without restarting server"""
+    try:
+        initialize_retriever()
+        return {"status": "success", "message": "Data reloaded successfully"}
+    except Exception as e:
+        return {"status": "error", "message": f"Failed to reload data: {str(e)}"}
+
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    # Enable auto-reload for development
+    uvicorn.run(
+        "main:app", 
+        host="0.0.0.0", 
+        port=8000, 
+        reload=True,  # This enables auto-reload
+        reload_dirs=["app", "data"]  # Watch these directories for changes
+    )

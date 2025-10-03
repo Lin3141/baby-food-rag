@@ -27,3 +27,24 @@ class AskResponse(BaseModel):
     citations: List[Citation]
     confidence: str  # "High", "Medium", "Low"
     retrieved_foods: List[FoodItem]
+
+class SafetyAlert(BaseModel):
+    level: str  # "CRITICAL", "WARNING", "INFO"
+    message: str
+    source: str
+
+class RAGAdvantage(BaseModel):
+    evidence_based: bool
+    source_cited: bool
+    safety_checked: bool
+    age_appropriate: bool
+    medical_guidelines: str
+
+class EnhancedAskResponse(BaseModel):
+    answer: str
+    citations: List[Citation]
+    confidence: str
+    retrieved_foods: List[FoodItem]
+    safety_alerts: List[SafetyAlert]
+    rag_advantages: RAGAdvantage
+    vs_chatgpt: str  # Explanation of why this is better than ChatGPT
