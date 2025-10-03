@@ -107,7 +107,7 @@ async def ask_question(request: AskRequest, ret: HybridRetriever = Depends(get_r
 def simulate_llm_response(parsed_query: ParsedQuery, subgraph: KGSubgraph) -> str:
     """Generate simplified, scannable response with clear visual hierarchy"""
     if not parsed_query.food:
-        return "❌ **No food identified** in your question\n📚 **Source:** Query Parser"
+        return "❌ **No food identified** in your question\n**Source:** Query Parser"
     
     response_parts = []
     food_name = parsed_query.food.lower()
@@ -124,34 +124,36 @@ def simulate_llm_response(parsed_query: ParsedQuery, subgraph: KGSubgraph) -> st
     else:
         response_parts.append(f"✅ **Yes, {food_name} is safe** for babies")
     
-    # 2. WHY IT MATTERS (🤔 + reasoning)
+    # 2. WHY IT MATTERS (reasoning without icon)
     why_explanation = _get_why_it_matters(food_name, parsed_query.age_months)
     if why_explanation:
-        response_parts.append(f"\n🤔 **Why it matters:** {why_explanation}")
+        response_parts.append(f"\n**Why it matters:** {why_explanation}")
     
-    # 3. PREPARATION (🥄 + spacing)
+    # 3. PREPARATION (spacing without icon)
     prep_instruction = _get_simple_prep(food_name)
     if prep_instruction:
-        response_parts.append(f"\n🥄 **Prep:** {prep_instruction}")
+        response_parts.append(f"\n**Prep:** {prep_instruction}")
     
-    # 4. KEY WARNING (⚠️ + bold if present)
+    # 4. KEY WARNING (bold without icon)
     warning = _get_key_warning(risk_facts, food_name)
     if warning:
-        response_parts.append(f"\n⚠️ **Warning:** {warning}")
+        response_parts.append(f"\n**Note:** {warning}")
     
-    # 5. BENEFIT (💪 + bold if relevant)
+    # 5. BENEFIT (bold without icon)
     benefit = _get_key_benefit(food_name, subgraph.facts)
     if benefit:
-        response_parts.append(f"\n💪 **Benefit:** {benefit}")
+        response_parts.append(f"\n**Benefit:** {benefit}")
     
-    # 6. ACTIONABLE NEXT STEP (👍/🚫 + practical action)
+    # 6. ACTIONABLE NEXT STEP (practical action without icon)
     action_step = _get_actionable_next_step(food_name, parsed_query.age_months, risk_facts)
     if action_step:
-        response_parts.append(f"\n{action_step}")
+        # Remove icons from action step
+        clean_action = action_step.replace("👍 **Next step:**", "**Next step:**").replace("🚫 **Next step:**", "**Next step:**").replace("⚠️ **Next step:**", "**Next step:**")
+        response_parts.append(f"\n{clean_action}")
     
-    # 7. SOURCE (📚 + clean formatting)
+    # 7. SOURCE (clean formatting without icon)
     source = _get_primary_source(subgraph.facts)
-    response_parts.append(f"\n📚 **Source:** {source}")
+    response_parts.append(f"\n**Sources:** {source}")
     
     return "".join(response_parts)
 

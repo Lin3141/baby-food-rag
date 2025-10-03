@@ -195,43 +195,45 @@ class SimpleHybridRetriever:
             else:
                 response_parts.append(f"✅ **Yes, {food_name} is safe** for babies")
         else:
-            # Nutrient-focused responses with icons
+            # Nutrient-focused responses without icons
             if 'protein' in query_lower:
-                response_parts.append(f"💪 **{primary_food.name} provides** {primary_food.protein_g}g protein per 100g")
+                response_parts.append(f"**{primary_food.name} provides** {primary_food.protein_g}g protein per 100g")
             elif 'iron' in query_lower:
-                response_parts.append(f"💪 **{primary_food.name} contains** {primary_food.iron_mg}mg iron per 100g")
+                response_parts.append(f"**{primary_food.name} contains** {primary_food.iron_mg}mg iron per 100g")
             elif 'vitamin c' in query_lower:
-                response_parts.append(f"💪 **{primary_food.name} has** {primary_food.vit_c_mg}mg vitamin C per 100g")
+                response_parts.append(f"**{primary_food.name} has** {primary_food.vit_c_mg}mg vitamin C per 100g")
             else:
                 response_parts.append(f"✅ **{primary_food.name} is** a nutritious {primary_food.category.lower()}")
         
-        # 2. WHY IT MATTERS (🤔 + explanation)
+        # 2. WHY IT MATTERS (reasoning without icon)
         why_explanation = self._get_why_it_matters(primary_food, query_lower)
         if why_explanation:
-            response_parts.append(f"\n🤔 **Why it matters:** {why_explanation}")
+            response_parts.append(f"\n**Why it matters:** {why_explanation}")
         
-        # 3. PREPARATION (🥄 + spacing)
+        # 3. PREPARATION (spacing without icon)
         prep = self._get_simple_prep_instruction(primary_food)
         if prep:
-            response_parts.append(f"\n🥄 **Prep:** {prep}")
+            response_parts.append(f"\n**Prep:** {prep}")
         
-        # 4. KEY WARNING (⚠️ + bold)
+        # 4. KEY WARNING (bold without icon)
         warning = self._get_simple_warning(primary_food)
         if warning:
-            response_parts.append(f"\n⚠️ **Warning:** {warning}")
+            response_parts.append(f"\n**Note:** {warning}")
         
-        # 5. BENEFIT (💪 + benefit info)
+        # 5. BENEFIT (benefit info without icon)
         benefit = self._get_nutritional_benefit(primary_food)
         if benefit:
-            response_parts.append(f"\n💪 **Benefit:** {benefit}")
+            response_parts.append(f"\n**Benefit:** {benefit}")
         
-        # 6. ACTIONABLE NEXT STEP (👍/🚫 + practical action)
+        # 6. ACTIONABLE NEXT STEP (practical action without icon)
         action_step = self._get_actionable_next_step(primary_food, query_lower)
         if action_step:
-            response_parts.append(f"\n{action_step}")
+            # Remove icon from action step
+            clean_action = action_step.replace("👍 **Next step:**", "**Next step:**").replace("🚫 **Next step:**", "**Next step:**").replace("⚠️ **Next step:**", "**Next step:**")
+            response_parts.append(f"\n{clean_action}")
         
-        # 7. SOURCE (📚 + clean)
-        response_parts.append("\n📚 **Source:** AAP/CDC Guidelines")
+        # 7. SOURCE (clean without icon)
+        response_parts.append("\n**Sources:** AAP/CDC Guidelines")
         
         return "".join(response_parts)
     
